@@ -740,20 +740,6 @@
       "properties": {}
     },
     {
-      "type": "Microsoft.Resources/deploymentScripts",
-      "apiVersion": "2020-10-01",
-      "kind": "AzurePowerShell",
-      "name": "WaitSection",
-      "location": "[deployment().location]",
-      "properties": {
-        "mode": "Incremental",
-        "azPowerShellVersion": "3.0",
-        "scriptContent": "start-sleep -Seconds 480",
-        "cleanupPreference": "Always",
-        "retentionInterval": "PT1H"
-      }
-    },
-    {
       "condition": "[and(not(empty(parameters('managementSubscriptionId'))),equals(parameters('enableLogAnalytics'), 'Yes'))]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-05-01",
@@ -761,7 +747,6 @@
       "name": "[variables('deploymentNames').monitoringDeploymentName]",
       "dependsOn": [
         "[variables('deploymentNames').policyDeploymentName]",
-        "WaitSection",
         "policyCompletion"
       ],
       "location": "[deployment().location]",
@@ -843,7 +828,6 @@
       "name": "[variables('deploymentNames').identityDeploymentName]",
       "dependsOn": [
         "[variables('deploymentNames').policyDeploymentName]",
-        "WaitSection",
         "policyCompletion"
       ],
       "location": "[deployment().location]",
@@ -880,7 +864,6 @@
       "name": "[variables('deploymentNames').lzDeploymentName]",
       "dependsOn": [
         "[variables('deploymentNames').policyDeploymentName]",
-        "WaitSection",
         "policyCompletion"
       ],
       "location": "[deployment().location]",
@@ -1039,7 +1022,6 @@
       "name": "[if(not(empty(parameters('connectivitySubscriptionId'))), variables('connectivityMoveSubscription'), variables('noConnectivitySubscription'))]",
       "dependsOn": [
         "[variables('deploymentNames').policyDeploymentName]",
-        "WaitSection",
         "policyCompletion"
       ],
       "properties": {}
