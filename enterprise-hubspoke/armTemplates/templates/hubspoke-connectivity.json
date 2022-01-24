@@ -381,7 +381,7 @@
                                             ],
                                             "properties": {
                                                 "gatewayType": "Vpn",
-                                                "vpnGatewayGeneration": "Generation2",
+                                                "vpnGatewayGeneration": "Generation1",
                                                 "vpnType": "[parameters('vpnGwType')]",
                                                 "ipConfigurations": [
                                                     {
